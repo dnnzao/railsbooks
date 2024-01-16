@@ -1,0 +1,22 @@
+<table class="table table-striped table-border table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th><strong>Title:</strong></th>
+      <th><strong>Author:</strong></th>
+      <th><strong>Year release:</strong></th>
+      <th><strong>Number of copies:</strong></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <% @books.each do |book| %>
+            <%= render book %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<%= link_to "New book", new_book_path, class: "btn btn-primary" %>
