@@ -1,8 +1,15 @@
+<%= form_tag(books_path, method: "get") do %>
+  <%= label_tag "Category:" %>
+  <%= select_tag "category", options_for_select(Book.distinct.pluck(:category)), include_blank: true %>
+  <%= submit_tag "Filter" %>
+<% end %>
+
 <table class="table table-striped table-border table-hover">
   <thead class="thead-dark">
     <tr>
       <th><strong>Title:</strong></th>
       <th><strong>Author:</strong></th>
+      <th><strong>Category:</strong></th>
       <th><strong>Year release:</strong></th>
       <th><strong>Number of copies:</strong></th>
       <th colspan="3"></th>

@@ -3,7 +3,13 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    @books = Book.all
+    def index
+      if params[:category].present?
+        @books = Book.where(category: params[:category])
+      else
+        @books = Book.all
+      end
+    end
   end
 
   # GET /books/1 or /books/1.json
@@ -37,6 +43,7 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1 or /books/1.json
   def update
     respond_to do |format|
+      @book.category = params[:book][:category]
       if @book.update(book_params)
         format.html { redirect_to book_url(@book), notice: "Book was successfully updated." }
         format.json { render :show, status: :ok, location: @book }
@@ -65,6 +72,6 @@ class BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title, :author, :year_release, :number_of_copies)
+      params.require(:book).permit(:title, :author, :year_release, :number_of_copies, :cateogry)
     end
 end
