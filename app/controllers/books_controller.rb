@@ -3,12 +3,10 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    def index
-      if params[:category].present?
-        @books = Book.where(category: params[:category])
-      else
-        @books = Book.all
-      end
+    if params[:category].present?
+      @books = Book.where(category: params[:category])
+    else
+      @books = Book.all
     end
   end
 
@@ -72,6 +70,6 @@ class BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title, :author, :year_release, :number_of_copies, :category)
+      params.require(:book).permit(:title, :author, :year_release, :number_of_copies, :category, :publisher_id)
     end
 end

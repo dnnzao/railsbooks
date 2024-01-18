@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :books
+  resources :publishers, only: [:index, :show]
   root 'home#index'
   get 'home/about'
   get 'books/:category', to: 'books#index', as: :category_books
